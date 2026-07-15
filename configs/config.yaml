@@ -1,0 +1,46 @@
+paths:
+  raw_images_dir: "data/raw/images"     
+  raw_annotations_dir: "data/raw/annotations" 
+  embeddings_dir: "data/processed/embeddings"
+  metadata_dir: "data/processed/metadata"
+  faiss_dir: "data/processed/faiss"
+  sample_dir: "data/sample"
+
+models:
+  clip:
+    backbone: "ViT-L-14"
+    pretrained: "openai"   
+    embedding_dim: 768
+    device: "cpu"           
+
+  places365:
+    arch: "resnet50"
+    weights_url: "http://places2.csail.mit.edu/models_places365/resnet50_places365.pth.tar"
+    categories_url: "https://raw.githubusercontent.com/csailvision/places365/master/categories_places365.txt"
+    local_weights_path: "models/weights/resnet50_places365.pth.tar"
+    local_categories_path: "models/weights/categories_places365.txt"
+
+  garment_detector:
+    hf_model_id: "google/owlvit-base-patch32" 
+    box_score_threshold: 0.15
+    max_boxes_per_image: 4
+
+faiss:
+  index_type: "IndexFlatIP"     
+  nlist: 100              
+
+# Retrieval / reranking weights
+retrieval:
+  top_k_default: 10
+  recall_pool_size: 100       
+  weights:
+    clip_similarity: 0.55
+    color_match: 0.15
+    category_match: 0.20
+    scene_match: 0.10
+
+scene_buckets:
+  office: ["office", "office_cubicles", "conference_room", "computer_room", "corporate_lobby"]
+  urban_street: ["street", "crosswalk", "downtown", "alley", "plaza", "courtyard"]
+  park: ["park", "botanical_garden", "picnic_area", "campsite", "yard", "garden"]
+  home: ["home_office", "living_room", "bedroom", "dining_room", "kitchen", "hotel_room"]
