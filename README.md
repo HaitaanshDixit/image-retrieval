@@ -4,7 +4,6 @@ Natural-language search over a fashion image dataset that reasons about
 **garment attributes** (category, color) and **scene/place** (office,
 street, park, home) jointly and not just whole-image CLIP similarity.
 
-This README covers setup and running the code.
 
 ## Architecture at a glance
 
