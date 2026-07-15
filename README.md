@@ -39,7 +39,7 @@ This README covers setup and running the code.
                          with structured attribute/scene match
                                       ▼
                                  top-k results
-
+```
 
 
 ## Repo layout
